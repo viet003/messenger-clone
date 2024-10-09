@@ -24,7 +24,9 @@ const AuthSocialButton: React.FC<AuthSocialButtonProps> = ({
         px-4
         py-2
         text-gray-500
-        shadow-sm"
+        shadow-sm
+        border-2
+        border-gray-300"
         >
         <Icon />
         </button>

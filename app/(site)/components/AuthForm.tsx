@@ -9,6 +9,10 @@ import Input from '../../../app/components/inputs/Input'
 import Button from '../../components/Button'
 import AuthSocialButton from '../../components/AuthSocialButton'
 import axios from 'axios'
+import toast from 'react-hot-toast'
+import { signIn } from 'next-auth/react'
+
+
 type Variant = 'LOGIN' | 'REGISTER'
 
 const AuthForm = () => {
@@ -22,6 +26,7 @@ const AuthForm = () => {
             setVariant('LOGIN')
         }
     }, [variant])
+
     const {
         register,
         handleSubmit,
@@ -33,20 +38,50 @@ const AuthForm = () => {
             password: '',
         }
     })
+
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true)
         if (variant === 'REGISTER') {
             axios.post('/api/register', data)
-
-        }
-        if (variant === 'LOGIN') {
-            // next auth signIn
-        }
+              .catch(() => toast.error('Something went wrong!'))
+              .finally(() => setIsLoading(false));
+          }
+          
+          if (variant === 'LOGIN') {
+            signIn('credentials', {
+              ...data,
+              redirect: false
+            })
+            .then((callback) => {
+              if (callback?.error) {
+                toast.error('Invalid credentials');
+              }
+          
+              if (callback?.ok && !callback?.error) {
+                toast.success('Logged in!');
+              }
+            })
+            .finally(() => setIsLoading(false));
+          }
+          
     }
+
     const socialAction = (action: string) => {
         setIsLoading(true)
-        // social signIn
+
+        signIn(action, { redirect: false })
+        .then((callback) => {
+          if (callback?.error) {
+            toast.error('Invalid Credentials');
+          }
+      
+          if (callback?.ok && !callback?.error) {
+            toast.success('Logged in!');
+          }
+        })
+        .finally(() => setIsLoading(false)); 
     }
+    
     return (
         <div
             className="
