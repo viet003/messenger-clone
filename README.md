@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Messenger-Clone
 
-First, run the development server:
+Messenger-Clone là một ứng dụng chat trực tuyến mô phỏng chức năng của Messenger, cho phép người dùng gửi tin nhắn, hình ảnh và tương tác với nhau một cách dễ dàng và nhanh chóng.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Mục lục
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Giới thiệu](#giới-thiệu)
+- [Tính năng](#tính-năng)
+- [Yêu cầu hệ thống](#yêu-cầu-hệ-thống)
+- [Cài đặt](#cài-đặt)
+- [Sử dụng](#sử-dụng)
+- [Đóng góp](#đóng-góp)
+- [Giấy phép](#giấy-phép)
+- [Liên hệ](#liên-hệ)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Giới thiệu
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Messenger-Clone được phát triển với mục tiêu tạo ra một nền tảng chat đơn giản nhưng mạnh mẽ, cho phép người dùng kết nối và giao tiếp với bạn bè, gia đình và đồng nghiệp.
 
-## Learn More
+## Tính năng
 
-To learn more about Next.js, take a look at the following resources:
+- **Nhắn tin tức thì**: Gửi và nhận tin nhắn trong thời gian thực.
+- **Chia sẻ hình ảnh**: Gửi và nhận hình ảnh một cách dễ dàng.
+- **Thông báo đẩy**: Nhận thông báo khi có tin nhắn mới.
+- **Trò chuyện nhóm**: Tạo và tham gia các nhóm chat.
+- **Trạng thái trực tuyến**: Xem ai đang trực tuyến.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Yêu cầu hệ thống
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Backend**:
+  - Node.js >= 14.x
+  - MongoDB >= 4.x
+- **Frontend**:
+  - Trình duyệt hiện đại hỗ trợ ES6
 
-## Deploy on Vercel
+## Cài đặt
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Backend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clone** repository:
+
+   ```bash
+   git clone https://github.com/yourusername/messenger-clone-backend.git
+   ```
+
+2. **Cài đặt** các thư viện cần thiết:
+
+   ```bash
+   cd messenger-clone-backend
+   npm install
+   ```
+
+3. **Cấu hình** biến môi trường trong file `.env`.
+
+4. **Khởi chạy** server:
+
+   ```bash
+   npm start
+   ```
+
+### Frontend
+
+1. **Clone** repository:
+
+   ```bash
+   git clone https://github.com/yourusername/messenger-clone-frontend.git
+   ```
+
+2. **Cài đặt** các thư viện cần thiết:
+
+   ```bash
+   cd messenger-clone-frontend
+   npm install
+   ```
+
+3. **Khởi chạy** ứng dụng:
+
+   ```bash
+   npm start
+   ```
+
+## Sử dụng
+
+- Truy cập vào địa chỉ `http://localhost:3000` trên trình duyệt.
+- Đăng ký tài khoản mới hoặc đăng nhập nếu đã có tài khoản.
+- Bắt đầu trò chuyện với bạn bè!
+
+## Đóng góp
+
+Chúng tôi hoan nghênh mọi đóng góp từ cộng đồng. Vui lòng tạo một pull request hoặc mở một issue để thảo luận về những thay đổi bạn muốn thực hiện.
+
+## Giấy phép
+
+Dự án này được cấp phép dưới [MIT License](LICENSE.md).
+
+## Liên hệ
+
+- **Email**: support@messenger-clone.com
+- **GitHub**: [yourusername/messenger-clone](https://github.com/yourusername/messenger-clone)
