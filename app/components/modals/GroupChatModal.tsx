@@ -15,6 +15,7 @@ import Select from '../inputs/Select';
 import Modal from './Modal';
 import Button from '../Button';
 import { toast } from 'react-hot-toast';
+import Botconfig from '@/app/users/components/Botconfig';
 
 interface GroupChatModalProps {
   isOpen?: boolean;
@@ -75,15 +76,15 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
                 text-gray-900
               "
               >
-                Create a group chat
+                Tạo nhóm chat mới
               </h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              Create a chat with more than 2 people.
+              Tạo đoạn chat với nhiều hơn 2 người.
             </p>
             <div className="mt-10 flex flex-col gap-y-8">
               <Input
                 disabled={isLoading}
-                label="Name" 
+                label="Tên nhóm chat" 
                 id="name" 
                 errors={errors} 
                 required 
@@ -91,11 +92,14 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
               />
               <Select
                 disabled={isLoading}
-                label="Members" 
-                options={users.map((user) => ({ 
-                  value: user.id, 
-                  label: user.name 
-                }))} 
+                label="Thành viên" 
+                options={users
+                  .filter(user => user.id !== Botconfig.id) // Filter out bot users
+                  .map(user => ({ 
+                    value: user.id, 
+                    label: user.name 
+                  }))
+                }                
                 onChange={(value) => setValue('members', value, { 
                   shouldValidate: true 
                 })} 
@@ -111,10 +115,10 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
             type="button"
             secondary
           >
-            Cancel
+            Đóng
           </Button>
           <Button disabled={isLoading} type="submit">
-            Create
+            Tạo nhóm chat
           </Button>
         </div>
       </form>

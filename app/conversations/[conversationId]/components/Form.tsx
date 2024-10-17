@@ -1,18 +1,24 @@
 'use client';
 
-import { 
-  HiPaperAirplane, 
+import {
+  HiPaperAirplane,
   HiPhoto
 } from "react-icons/hi2";
 import MessageInput from "./MessageInput";
-import { 
-  FieldValues, 
-  SubmitHandler, 
-  useForm 
+import VoiceInput from "./VoiceInput";
+
+import {
+  FieldValues,
+  SubmitHandler,
+  useForm
 } from "react-hook-form";
 import axios from "axios";
 import { CldUploadButton } from "next-cloudinary";
 import useConversation from "@/app/hooks/useConversation";
+import getOtherUser from "@/app/actions/getOtherUser";
+import Botconfig from "@/app/users/components/Botconfig";
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import getAllUserGroup from "@/app/actions/getAllUserGroup";
 
 const Form = () => {
   const { conversationId } = useConversation();
@@ -35,18 +41,26 @@ const Form = () => {
     axios.post('/api/messages', {
       ...data,
       conversationId: conversationId
+    }).then((res) => {
+      if(res.data?.hasBot) {
+        axios.post('/api/botmessages', {
+          ...data,
+          conversationId: conversationId
+        });
+      }
     })
+
   }
 
   const handleUpload = (result: any) => {
     axios.post('/api/messages', {
-      image: result.info.secure_url,
+      image: result?.info?.secure_url,
       conversationId: conversationId
     })
   }
 
-  return ( 
-    <div 
+  return (
+    <div
       className="
         py-4 
         px-4 
@@ -59,26 +73,29 @@ const Form = () => {
         w-full
       "
     >
-      <CldUploadButton 
-        options={{ maxFiles: 1 }} 
-        onUpload={handleUpload} 
-        uploadPreset="veikz5hh"
+      <CldUploadButton
+        options={{ maxFiles: 1 }}
+        onSuccess={handleUpload}
+        uploadPreset="iif6aa1i"
       >
         <HiPhoto size={30} className="text-sky-500" />
       </CldUploadButton>
-      <form 
-        onSubmit={handleSubmit(onSubmit)} 
+
+      <VoiceInput />
+
+      <form
+        onSubmit={handleSubmit(onSubmit)}
         className="flex items-center gap-2 lg:gap-4 w-full"
       >
-        <MessageInput 
-          id="message" 
-          register={register} 
-          errors={errors} 
-          required 
-          placeholder="Write a message"
+        <MessageInput
+          id="message"
+          register={register}
+          errors={errors}
+          required
+          placeholder="Aa"
         />
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className="
             rounded-full 
             p-2 
@@ -97,5 +114,5 @@ const Form = () => {
     </div>
   );
 }
- 
+
 export default Form;

@@ -12,6 +12,7 @@ import useActiveList from "@/app/hooks/useActiveList";
 import Avatar from "@/app/components/Avatar";
 import AvatarGroup from "@/app/components/AvatarGroup";
 import ProfileDrawer from "./ProfileDrawer";
+import Botconfig from '@/app/users/components/Botconfig';
 
 interface HeaderProps {
   conversation: Conversation & {
@@ -25,12 +26,13 @@ const Header: React.FC<HeaderProps> = ({ conversation }) => {
 
   const { members } = useActiveList();
   const isActive = members.indexOf(otherUser?.email!) !== -1;
+
   const statusText = useMemo(() => {
     if (conversation.isGroup) {
       return `${conversation.users.length} members`;
     }
 
-    return isActive ? 'Active' : 'Offline'
+    return otherUser?.id === Botconfig.id ? "Online" : isActive ? 'Online' : 'Offline';
   }, [conversation, isActive]);
 
   return (

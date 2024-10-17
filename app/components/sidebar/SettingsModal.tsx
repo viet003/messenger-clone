@@ -77,16 +77,16 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                 text-gray-900
               "
             >
-              Profile
+              Thông tin cá nhân
             </h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              Edit your public information.
+              Chỉnh sửa thông tin công khai.
             </p>
 
             <div className="mt-10 flex flex-col gap-y-8">
               <Input
                 disabled={isLoading}
-                label="Name" 
+                label="Tên người dùng" 
                 id="name" 
                 errors={errors} 
                 required 
@@ -103,7 +103,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     text-gray-900
                   "
                 >
-                  Photo
+                  Ảnh đại diện
                 </label>
                 <div className="mt-2 flex items-center gap-x-3">
                   <Image
@@ -115,15 +115,15 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                   />
                   <CldUploadButton 
                     options={{ maxFiles: 1 }} 
-                    onUpload={handleUpload} 
-                    uploadPreset="pgc9ehd5"
+                    onSuccess={handleUpload} 
+                    uploadPreset="k5ypvkm8"
                   >
                     <Button
                       disabled={isLoading}
                       secondary
                       type="button"
                     >
-                      Change
+                      Thay đổi
                     </Button>
                   </CldUploadButton>
                 </div>
@@ -146,13 +146,13 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
             secondary 
             onClick={onClose}
           >
-            Cancel
+            Đóng
           </Button>
           <Button 
             disabled={isLoading}
             type="submit"
           >
-            Save
+            Lưu thay đổi
           </Button>
         </div>
       </form>

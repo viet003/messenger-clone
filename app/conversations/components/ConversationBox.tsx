@@ -55,14 +55,14 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
 
   const lastMessageText = useMemo(() => {
     if (lastMessage?.image) {
-      return 'Sent an image';
+      return 'Đã gửi một ảnh';
     }
 
     if (lastMessage?.body) {
       return lastMessage?.body
     }
 
-    return 'Started a conversation';
+    return 'Bắt đầu cuộc trò chuyện';
   }, [lastMessage]);
 
   return ( 
@@ -93,7 +93,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
           <span className="absolute inset-0" aria-hidden="true" />
           <div className="flex justify-between items-center mb-1">
             <p className="text-md font-medium text-gray-900">
-              {data.name || otherUser.name}
+              {data.name || otherUser?.name || null}
             </p>
             {lastMessage?.createdAt && (
               <p 
@@ -115,7 +115,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
               hasSeen ? 'text-gray-500' : 'text-black font-medium'
             )}>
               {lastMessageText}
-            </p>
+          </p>
         </div>
       </div>
     </div>

@@ -3,12 +3,13 @@ import { NextResponse } from "next/server";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import { pusherServer } from '@/app/libs/pusher'
 import prisma from "@/app/libs/prismadb";
+import getAllUserGroup from "@/app/actions/getAllUserGroup";
+import Botconfig from "@/app/users/components/Botconfig";
 
 export async function POST(
   request: Request,
 ) {
   try {
-    const currentUser = await getCurrentUser();
     const body = await request.json();
     const {
       message,
@@ -16,9 +17,14 @@ export async function POST(
       conversationId
     } = body;
 
+    const currentUser = await getCurrentUser();
+    const allUser = await getAllUserGroup(conversationId);
+
     if (!currentUser?.id || !currentUser?.email) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
+
+    const hasBot = allUser?.some((user) => user?.id === Botconfig.id);
 
     const newMessage = await prisma.message.create({
       include: {
@@ -26,7 +32,7 @@ export async function POST(
         sender: true
       },
       data: {
-        body: message,
+        body: message ? message : "",
         image: image,
         conversation: {
           connect: { id: conversationId }
@@ -75,8 +81,8 @@ export async function POST(
         messages: [lastMessage]
       });
     });
-
-    return NextResponse.json(newMessage)
+    
+    return NextResponse.json({ message: newMessage, body: body, hasBot: hasBot })
   } catch (error) {
     console.log(error, 'ERROR_MESSAGES')
     return new NextResponse('Error', { status: 500 });
