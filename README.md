@@ -18,20 +18,8 @@ Messenger Clone là một ứng dụng chat thời gian thực tương tự như
 
 ## Công nghệ sử dụng
 
-- **Frontend:**
-  - React.js
-  - HTML/CSS
-  - JavaScript (ES6+)
-  
-- **Backend:**
-  - Node.js
-  - Express.js
-  - Prisma ORM
-  - MongoDB
-  
-- **Giao tiếp thời gian thực:**
-  - WebSockets
-  - Socket.io
+- NextJs.
+- Pusher.
 
 ## Hướng dẫn cài đặt và cấu hình
 
